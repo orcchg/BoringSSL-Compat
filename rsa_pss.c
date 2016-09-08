@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <openssl/rsa.h>
+#include "boringssl_compat.h"
 
 int RSA_verify_PKCS1_PSS(RSA *rsa,
 			 const unsigned char *mHash,

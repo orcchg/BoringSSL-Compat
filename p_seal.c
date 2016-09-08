@@ -59,14 +59,7 @@
 #include <stdio.h>
 //#include "cryptlib.h"
 #include "evp.h"
-#include <openssl/rand.h>
-#ifndef OPENSSL_NO_RSA
-#include <openssl/rsa.h>
-#endif
-#include <openssl/cipher.h>
-#include <openssl/evp.h>
-#include <openssl/objects.h>
-#include <openssl/x509.h>
+#include "boringssl_compat.h"
 
 int EVP_CIPHER_CTX_rand_key(EVP_CIPHER_CTX *ctx, unsigned char *key)
 	{
@@ -105,17 +98,10 @@ int EVP_SealInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type, unsigned char **ek
 	return(npubk);
 	}
 
-/* MACRO
-void EVP_SealUpdate(ctx,out,outl,in,inl)
-EVP_CIPHER_CTX *ctx;
-unsigned char *out;
-int *outl;
-unsigned char *in;
-int inl;
+int EVP_SealUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl, unsigned char *in, int inl)
 	{
-	EVP_EncryptUpdate(ctx,out,outl,in,inl);
+	return EVP_EncryptUpdate(ctx,out,outl,in,inl);
 	}
-*/
 
 int EVP_SealFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
 	{

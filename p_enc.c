@@ -59,13 +59,7 @@
 #include <stdio.h>
 //#include "cryptlib.h"
 #include "evp.h"
-#include <openssl/rand.h>
-#ifndef OPENSSL_NO_RSA
-#include <openssl/rsa.h>
-#endif
-#include <openssl/evp.h>
-#include <openssl/objects.h>
-#include <openssl/x509.h>
+#include "boringssl_compat.h"
 
 int EVP_PKEY_encrypt_old(unsigned char *ek, const unsigned char *key, int key_len,
 	     EVP_PKEY *pubk)

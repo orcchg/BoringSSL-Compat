@@ -59,15 +59,7 @@
 #include <stdio.h>
 //#include "cryptlib.h"
 #include "evp.h"
-#ifndef OPENSSL_NO_RSA
-
-#include <openssl/cipher.h>
-#include <openssl/err.h>
-#include <openssl/evp.h>
-#include <openssl/mem.h>
-#include <openssl/objects.h>
-#include <openssl/x509.h>
-#include <openssl/rsa.h>
+#include "boringssl_compat.h"
 
 int EVP_OpenUpdate(EVP_CIPHER_CTX *ctx, uint8_t *out, int *out_len,
                       const uint8_t *in, int in_len)
@@ -128,10 +120,3 @@ int EVP_OpenFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
 		i = EVP_DecryptInit_ex(ctx,NULL,NULL,NULL,NULL);
 	return(i);
 	}
-#else /* !OPENSSL_NO_RSA */
-
-# ifdef PEDANTIC
-static void *dummy=&dummy;
-# endif
-
-#endif
