@@ -30,6 +30,7 @@
 #define BORINGSSL_COMPAT__H__
 
 #if USE_BORINGSSL
+
 #include "boringssl/include/openssl/aes.h"
 #include "boringssl/include/openssl/conf.h"
 #include "boringssl/include/openssl/err.h"
@@ -42,18 +43,6 @@
 #include "boringssl/include/openssl/mem.h"
 #include "boringssl/include/openssl/objects.h"
 #include "boringssl/include/openssl/x509.h"
-#else
-#include <openssl/aes.h>
-#include <openssl/conf.h>
-#include <openssl/err.h>
-#include <openssl/evp.h>
-#include <openssl/pem.h>
-#include <openssl/rand.h>
-#include <openssl/rsa.h>
-#include <openssl/sha.h>
-#include <openssl/objects.h>
-#include <openssl/x509.h>
-#endif  // USE_BORINGSSL
 
 int EVP_SealInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type, unsigned char **ek,
 	     int *ekl, unsigned char *iv, EVP_PKEY **pubk, int npubk);
@@ -70,6 +59,21 @@ int EVP_OpenUpdate(EVP_CIPHER_CTX *ctx, uint8_t *out, int *out_len,
                       const uint8_t *in, int in_len);
 
 int EVP_OpenFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl);
+
+#else
+
+#include <openssl/aes.h>
+#include <openssl/conf.h>
+#include <openssl/err.h>
+#include <openssl/evp.h>
+#include <openssl/pem.h>
+#include <openssl/rand.h>
+#include <openssl/rsa.h>
+#include <openssl/sha.h>
+#include <openssl/objects.h>
+#include <openssl/x509.h>
+
+#endif  // USE_BORINGSSL
 
 #endif  // BORINGSSL_COMPAT__H__
 

@@ -24,15 +24,16 @@
 #   advertising, commercial distribution, promotion, marketing, publishing in media, etc.).
 #   Only the original author - Maxim Alov - has right to do any of the above actions.
 
+SET( TARGET sslcompat )
 SET( SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR} )
 SET( SOURCES
-#    ${SOURCE_DIR}/bio_b64.c
-    ${SOURCE_DIR}/p_dec.c
-    ${SOURCE_DIR}/p_enc.c
-    ${SOURCE_DIR}/p_open.c
-    ${SOURCE_DIR}/p_seal.c
-    ${SOURCE_DIR}/rsa_pss.c
+#    ${SOURCE_DIR}/bio_b64.cpp
+    ${SOURCE_DIR}/p_dec.cpp
+    ${SOURCE_DIR}/p_enc.cpp
+    ${SOURCE_DIR}/p_open.cpp
+    ${SOURCE_DIR}/p_seal.cpp
+    ${SOURCE_DIR}/rsa_pss.cpp
 )
-ADD_LIBRARY( ${SSL_COMPAT_LIB} SHARED ${SOURCES} )
-TARGET_LINK_LIBRARIES( ${SSL_COMPAT_LIB} ${CRYPTO_LIB} ${SSL_LIB} )
+ADD_LIBRARY( ${TARGET} SHARED ${SOURCES} )
+TARGET_LINK_LIBRARIES( ${TARGET} ${CRYPTO_LIB} ${SSL_LIB} )
 
